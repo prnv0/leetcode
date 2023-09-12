@@ -23,7 +23,7 @@ class Solution {
         System.out.println(words);
         sentence=sentence+words.get(0);
         for(i=1;i<count;i++){
-            sentence=sentence+" "+words.get(i);
+            sentence=sentence.concat(" "+words.get(i));
         }
         return sentence;
     }
