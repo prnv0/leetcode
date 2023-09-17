@@ -6,7 +6,7 @@ class Solution {
             if(pos==-1)
                 return false;
             else
-            t=t.substring(pos+1,t.length());
+            t=t.substring(pos+1,t.length()).intern();
             
         }
         return true;
