@@ -30,7 +30,6 @@ class Solution {
         stack="";
         leafcheck(root2);
         String stack2=stack;
-        System.out.println(stack1+" "+stack2);
         if(stack1.compareTo(stack2)==0)
             return true;
         return false;
