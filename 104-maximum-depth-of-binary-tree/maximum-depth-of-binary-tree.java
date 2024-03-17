@@ -16,24 +16,24 @@
 class Solution {
     public int maxDepth(TreeNode root) {
         TreeNode u=root;
-        Stack<TreeNode> stack= new Stack<>();
-        Stack<Integer> visited = new Stack<>();
+        Queue<TreeNode> queue= new LinkedList<>();
+        Queue<Integer> visited = new LinkedList<>();
         if(root==null)
             return 0;
-        stack.add(u);
-        visited.push(1);
+        queue.add(u);
+        visited.add(1);
         int max=0;
-        while(!stack.isEmpty()){
-            TreeNode v=stack.pop();
-            int temp=visited.pop();
+        while(!queue.isEmpty()){
+            TreeNode v=queue.remove();
+            int temp=visited.remove();
             max= Math.max(temp,max);
             if(v.left!=null){
-                stack.push(v.left);
-                visited.push(temp+1);
+                queue.add(v.left);
+                visited.add(temp+1);
             }
             if(v.right!=null){
-                stack.push(v.right);
-                visited.push(temp+1);
+                queue.add(v.right);
+                visited.add(temp+1);
             }
         }
         return max;
