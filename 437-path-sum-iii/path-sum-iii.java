@@ -14,14 +14,7 @@
  * }
  */
 class Solution {
-int count=0;
-    public void calc(TreeNode root, int targetSum){
-        if(root==null)
-            return;
-        calchelper(root,targetSum);
-        calc(root.left,targetSum);
-        calc(root.right,targetSum);
-    }
+int count=0;   
     public void calchelper(TreeNode root,long targetSum){
         if(root==null)
             return;
@@ -31,7 +24,11 @@ int count=0;
         calchelper(root.right,targetSum-root.val);
     }
     public int pathSum(TreeNode root, int targetSum) {
-        calc(root,targetSum);
+        if(root==null)
+            return 0;
+        calchelper(root,targetSum);
+        pathSum(root.left,targetSum);
+        pathSum(root.right,targetSum);
         return count;
     }
 }
