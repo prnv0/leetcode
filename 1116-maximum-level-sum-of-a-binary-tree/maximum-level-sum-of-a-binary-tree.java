@@ -1,57 +1,46 @@
-import java.util.LinkedList;
-import java.util.Queue;
-
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
 class Solution {
     public int maxLevelSum(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-
-        int level = 0;
-        int maxLevel = 1;
-        int maxSum = Integer.MIN_VALUE;
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-
-        while (!queue.isEmpty()) {
+        
+        TreeNode node;
+        int i,level=0,max=root.val,sum=root.val,maxlevel=1,qlen;
+        Queue<TreeNode> q= new LinkedList<TreeNode>();
+        q.add(root);
+        while(!q.isEmpty()){
+            qlen=q.size();
             level++;
-            int levelSum = 0;
-            int levelSize = queue.size();
-
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode node = queue.poll();
-                if (node != null) {
-                    levelSum += node.val;
-                    if (node.left != null) {
-                        queue.add(node.left);
-                    }
-                    if (node.right != null) {
-                        queue.add(node.right);
-                    }
+            sum=0;
+            for(i=0;i<qlen;i++){
+                node=q.remove();
+                if(node!=null){
+                    sum+=node.val;
+                    if (node.left != null) 
+                        q.add(node.left);
+                    
+                    if (node.right != null) 
+                        q.add(node.right);
                 }
+            
             }
-
-            if (levelSum > maxSum) {
-                maxSum = levelSum;
-                maxLevel = level;
+            if(sum>max){
+                max=sum;
+                maxlevel=level;
             }
         }
-
-        return maxLevel;
-    }
-}
-
-// Definition for a binary tree node.
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
+        return maxlevel;
     }
 }
