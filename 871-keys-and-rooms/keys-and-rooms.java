@@ -1,22 +1,22 @@
 class Solution {
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        Stack<List> stack= new Stack<List>();
+        Stack<Integer> stack= new Stack<Integer>();
         ArrayList<Integer> visited= new ArrayList<Integer>();
-        List<Integer> keys= new ArrayList<Integer>();
-        stack.push(rooms.get(0));
+        stack.push(0);
         visited.add(0);
+        int count=1;
         while(!stack.isEmpty()){
-            keys=stack.pop();
-            for(int i=0;i<keys.size();i++){
-                if(!visited.contains(keys.get(i))){
-                    visited.add(keys.get(i));
-                    stack.push(rooms.get(keys.get(i)));
+            for(int i:rooms.get(stack.pop())){
+                if(!visited.contains(i)){
+                    visited.add(i);
+                    count++;
+                    stack.push(i);;
                 }
                 
             }
 
         }
-        if(visited.size()==rooms.size())
+        if(count==rooms.size())
             return true;
         else
             return false;
