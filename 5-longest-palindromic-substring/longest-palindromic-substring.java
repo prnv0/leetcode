@@ -9,8 +9,6 @@ class Solution {
             }
             right=i;
             while(left>=0&&right<s.length()&&s.charAt(left)==s.charAt(right)){
-                System.out.println(left+" "+right);
-
                 left--;
                 right++;
             }
