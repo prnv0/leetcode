@@ -4,10 +4,11 @@ class Solution {
         String maxstring="";
         while(i<s.length()){
             left=i;
-            while(i<s.length() - 1 &&s.charAt(i)==s.charAt(i+1)){
-                i++;
-            }
             right=i;
+
+            while(right<s.length() - 1 &&s.charAt(right)==s.charAt(right+1)){
+                right++;
+            }
             while(left>=0&&right<s.length()&&s.charAt(left)==s.charAt(right)){
                 left--;
                 right++;
