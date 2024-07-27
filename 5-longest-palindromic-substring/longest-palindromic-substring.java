@@ -6,9 +6,10 @@ class Solution {
             left=i;
             right=i;
 
-            while(right<s.length() - 1 &&s.charAt(right)==s.charAt(right+1)){
+            while(right<s.length() &&s.charAt(left)==s.charAt(right)){
                 right++;
             }
+            right--;
             while(left>=0&&right<s.length()&&s.charAt(left)==s.charAt(right)){
                 left--;
                 right++;
