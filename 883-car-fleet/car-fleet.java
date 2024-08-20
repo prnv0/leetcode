@@ -1,9 +1,8 @@
 class Solution {
     public int carFleet(int target, int[] position, int[] speed) {
-        Double[][] time = new Double[position.length][2];
+        double[][] time = new double[position.length][2];
         for(int i=0;i<position.length;i++){
-            time[i][0]=(double)position[i];
-            time[i][1]=(double)(target-position[i])/speed[i];
+            time[i]=new double[]{position[i], (double)(target-position[i])/speed[i]};
         }
         double min=0;
         int result=0;
