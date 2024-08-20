@@ -5,7 +5,7 @@ class Solution {
         return result;
     }
     public void backtrack(List<String> list, String str,int open,int close,int n){
-        if(str.length()==n*2){
+        if(open==close&&open==n){
             list.add(str);
             return;
         }
