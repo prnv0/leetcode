@@ -3,6 +3,9 @@ class Solution {
         int max=0,curmax=0,count=0,i=0;
         while(i<nums.length-1){
             max=Math.max(max,nums[i]+i);
+            if(max>=nums.length-1){
+                return ++count;
+            }
             if(i==curmax){
                 count++;
                 curmax=max;
