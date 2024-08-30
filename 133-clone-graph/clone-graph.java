@@ -20,27 +20,25 @@ class Node {
 
 class Solution {
     public Node cloneGraph(Node node) {
-        if (node == null) return null;
-        
-        Node newNode = new Node(node.val); //new node for return
-        HashMap<Integer, Node> map = new HashMap(); //store visited nodes
-        
-        map.put(newNode.val, newNode); //add first node to HashMap
-        
-        LinkedList<Node> queue = new LinkedList(); //to store **original** nodes need to be visited
-        queue.add(node); //add first **original** node to queue
-        
-        while (!queue.isEmpty()) { //if more nodes need to be visited
-           Node n = queue.pop(); //search first node in the queue
-            for (Node neighbor : n.neighbors) {
-                if (!map.containsKey(neighbor.val)) { 
-                    map.put(neighbor.val, new Node(neighbor.val));
-                    queue.add(neighbor);
-                }
-                map.get(n.val).neighbors.add(map.get(neighbor.val)); 
-            }
+        if (node == null) {
+            return null;
         }
         
-        return newNode;
+        Map<Node, Node> visited = new HashMap<>();
+        return cloneGraphHelper(node, visited);
+    }
+    
+    private Node cloneGraphHelper(Node node, Map<Node, Node> visited) {
+        Node copy = new Node(node.val);
+        visited.put(node, copy);
+        for (Node neighbor : node.neighbors) {
+            if (visited.containsKey(neighbor)) {
+                copy.neighbors.add(visited.get(neighbor));
+            } else {
+                Node neighborCopy = cloneGraphHelper(neighbor, visited);
+                copy.neighbors.add(neighborCopy);
+            }
+        }
+        return copy;
     }
 }
