@@ -5,8 +5,7 @@ class Solution {
         int i=0;
         for(String s:timePoints){
             String[] times=s.split(":");
-            minutes[i++]=Integer.parseInt(times[0])*60+Integer.parseInt(times[1]);
-            
+            minutes[i++]=Integer.parseInt(times[0])*60+Integer.parseInt(times[1]);  
         }
         Arrays.sort(minutes);
         int mini=Integer.MAX_VALUE,temp1=0,temp2=0;
@@ -16,7 +15,6 @@ class Solution {
             temp2=Math.min(1440-x,mini);
             mini=Math.min(temp1,temp2);
         }
-        mini=Math.min(mini,minutes[n-1]-minutes[0]);
         mini=Math.min(mini,Math.abs(1440-minutes[n-1]+minutes[0]));
         return mini;
     }
