@@ -17,7 +17,6 @@ class Solution {
             mini=Math.min(temp1,temp2);
         }
         mini=Math.min(mini,minutes[n-1]-minutes[0]);
-        System.out.println(mini);
         mini=Math.min(mini,Math.abs(1440-minutes[n-1]+minutes[0]));
         System.out.println(mini);
         return mini;
