@@ -1,24 +1,31 @@
 class Solution {
     public List<Integer> partitionLabels(String S) {
-        if(S == null || S.length() == 0){
-            return null;
-        }
-        List<Integer> list = new ArrayList<>();
-        int[] map = new int[26];  // record the last index of the each char
-
-        for(int i = 0; i < S.length(); i++){
-            map[S.charAt(i)-'a'] = i;
-        }
-        // record the end index of the current sub string
-        int last = 0;
-        int start = 0;
-        for(int i = 0; i < S.length(); i++){
-            last = Math.max(last, map[S.charAt(i)-'a']);
-            if(last == i){
-                list.add(last - start + 1);
-                start = last + 1;
+        List<Integer> res = new ArrayList<>();
+        
+        int[] table = new int[26];
+        char[] stc = S.toCharArray();
+        for(char c:stc)//count the occurence of each char in string
+            table[c-'a']++;
+        
+        int i = 0, j = 0, l = S.length(), counter = 0;
+        HashSet<Character> hs = new HashSet<>();
+        while(j < l){
+            char c = stc[j];
+            if(!hs.contains(c)){// found new char in current window, so increase counter
+                hs.add(c);
+                counter++;
             }
-        }
-        return list;
+            table[c-'a']--;
+            j++;
+            if(table[c-'a'] == 0){ // decrease the counter as we have exhausted the c char and remove char c from set
+                counter--;
+                hs.remove(c);
+            }
+            if(counter == 0){//if counter becomes 0, means current window is a partition
+                res.add(j - i);//add length of current window
+                i = j;// reset i for next window
+            }            
+        } 
+        return res;
     }
 }
