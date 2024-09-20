@@ -19,7 +19,6 @@ class Solution {
         if(index==0)
             return s;
         if(n<1000) end=n-1;
-        System.out.println("Not equal");
         while(end>=0){
             StringBuilder sb= new StringBuilder(s);
             StringBuilder temp=new StringBuilder(s.substring(end));
