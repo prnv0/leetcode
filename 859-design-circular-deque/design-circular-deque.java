@@ -1,68 +1,77 @@
 class MyCircularDeque {
-    int head = 0, tail = 0, size = 0, n;
-    int[] arr;
 
-    public MyCircularDeque(int k) {
-        arr = new int[k];
-        n = k;
-    }
+   private final int[] buffer;
+   private int head;
+   private int tail;
+   private int size;
 
-    public boolean insertFront(int value) {
-        if (isFull()) {
-            return false;
-        }
-        head = head == 0 ? n - 1 : --head;
-        arr[head] = value;
-        size++;
-        return true;
-    }
+   public MyCircularDeque(int k) {
+       this.buffer = new int[k];
+       this.head = 1;
+       this.tail = 0;
+       this.size = 0;
+   }    
 
-    public boolean insertLast(int value) {
-        if (isFull()) {
-            return false;
-        }
-        arr[tail] = value;
-        tail = (tail + 1) % n;
-        size++;
-        return true;
-    }
+   public boolean insertFront(int value) {
+       if (isFull()) {
+           return false;
+       }
+       head = prev(head);
+       buffer[head] = value;
+       size++;
+       return true;
+   }
 
-    public boolean deleteFront() {
-        if (isEmpty()) {
-            return false;
-        }
-        head = (head + 1) % n;
-        size--;
-        return true;
-    }
+   private int prev(int i) {
+       return i == 0 ? buffer.length - 1 : --i;
+   }
+   
+   public boolean insertLast(int value) {
+       if (isFull()) {
+           return false;
+       }
+       tail = next(tail);
+       buffer[tail] = value;
+       size++;
+       return true;
+   }
+   
+   private int next(int i) {
+       i++;
+       return i == buffer.length ? 0 : i;
+   }
 
-    public boolean deleteLast() {
-        if (isEmpty()) {
-            return false;
-        }
-        tail = tail == 0 ? n - 1 : --tail;
-        size--;
-        return true;
-    }
-
-    public int getFront() {
-        return isEmpty() ? -1 : arr[head];
-    }
-
-    public int getRear() {
-        if (isEmpty()) {
-            return -1;
-        }
-        // Adjust the index to wrap around correctly
-        int rearIndex = (tail == 0) ? n - 1 : tail - 1;
-        return arr[rearIndex];
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public boolean isFull() {
-        return size == n;
-    }
+   public boolean deleteFront() {
+       if (isEmpty()) {
+           return false;
+       }
+       head = next(head);
+       size--;
+       return true;
+   }
+   
+   public boolean deleteLast() {
+       if (isEmpty()) {
+           return false;
+       }
+       tail = prev(tail);
+       size--;
+       return true;
+   }
+   
+   public int getFront() {
+       return isEmpty() ? -1 : buffer[head];
+   }
+   
+   public int getRear() {
+       return isEmpty() ? -1 : buffer[tail];
+   }
+   
+   public boolean isEmpty() {
+       return size == 0;
+   }
+   
+   public boolean isFull() {
+       return size == buffer.length;
+   }
 }
