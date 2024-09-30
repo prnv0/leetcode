@@ -9,7 +9,6 @@ class CustomStack {
     }
     
     public void push(int x) {
-        //System.out.println(top +" "+stack[top+1]);
         if(++top>=n){
             top--;
             return;
