@@ -25,7 +25,6 @@ class CustomStack {
     }
     
     public void increment(int k, int val) {
-        System.out.println("Min "+Math.min(k,top));
         for(int i=0;i<Math.min(k,top+1);i++)
             stack[i]=stack[i]+val;
         return;
