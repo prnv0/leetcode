@@ -18,14 +18,11 @@ class Solution {
         int x=arr1.length-1;
         int y=arr2.length-1;
         //check suffix length
-        // if(length==arr1.length)
-        //     return true;
         while(x>=0&&length!=arr1.length&&arr1[x].equals(arr2[y])){
             length++;
             x--;
             y--;
         }
-        System.out.println(length);
         if(length==arr1.length)
             return true;
         else return false;
