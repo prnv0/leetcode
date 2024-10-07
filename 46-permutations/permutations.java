@@ -5,7 +5,6 @@ class Solution {
             result.add(new ArrayList<>(curr));
             return;
         }
-        System.out.println(curr);
         for (int i = 0; i < nums.length; i++) {
             if (!used[i]) {
                 used[i] = true;
