@@ -23,7 +23,7 @@ class Solution {
             int len=q.size();
             int sum=0;
             for(int i=0;i<len;i++){
-                TreeNode temp=q.remove();
+                TreeNode temp=q.poll();
                 sum+=temp.val;
                 if(temp.left!=null)
                     q.add(temp.left);
@@ -41,7 +41,7 @@ class Solution {
             int len=q.size();
             for(int i=0;i<len;i++){
             int sum=arr.get(height);
-            TreeNode temp=q.remove();
+            TreeNode temp=q.poll();
             if(temp.left!=null)
                 sum=sum-temp.left.val;
             if(temp.right!=null){
