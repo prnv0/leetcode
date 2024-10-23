@@ -15,7 +15,7 @@
  */
 class Solution {
     public TreeNode replaceValueInTree(TreeNode root) {
-         int[] arr= new int[100001];
+         ArrayList<Integer> arr= new ArrayList<>();
          Queue<TreeNode> q= new LinkedList<>();
          q.add(root);
          int height=0;
@@ -30,9 +30,9 @@ class Solution {
                 if(temp.right!=null)
                     q.add(temp.right);
             }
-            arr[height++]=sum;
+            arr.add(sum);
          }
-        arr[height]=0;
+        arr.add(0);
         q.add(root);
         root.val=0;
         height=1;
@@ -40,7 +40,7 @@ class Solution {
         while(!q.isEmpty()){
             int len=q.size();
             for(int i=0;i<len;i++){
-            int sum=arr[height];
+            int sum=arr.get(height);
             TreeNode temp=q.remove();
             if(temp.left!=null)
                 sum=sum-temp.left.val;
