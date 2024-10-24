@@ -21,10 +21,7 @@ class Solution {
             return false;
         if (root1.val != root2.val)
             return false;
-        boolean noFlip = dfs(root1.left, root2.left) && dfs(root1.right, root2.right);
-        boolean flip = dfs(root1.left, root2.right) && dfs(root1.right, root2.left);
-
-        return noFlip || flip;
+        return (dfs(root1.left, root2.left) && dfs(root1.right, root2.right)) || (dfs(root1.left, root2.right) && dfs(root1.right, root2.left));
     }
     public boolean flipEquiv(TreeNode root1, TreeNode root2) {
         return dfs(root1,root2);
